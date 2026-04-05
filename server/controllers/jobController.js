@@ -77,8 +77,14 @@ exports.getNearbyJobs = async (req, res) => {
             job.location.coordinates[1] + offset()
           ]
         }
-      };
-    });
+
+    res.json(jobsWithDistance);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 // Mark Job as Completed (Client Side)
 exports.markJobCompleted = async (req, res) => {
   try {
@@ -100,13 +106,6 @@ exports.markJobCompleted = async (req, res) => {
     await job.save();
 
     res.json(job);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
-    res.json(jobsWithDistance);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
