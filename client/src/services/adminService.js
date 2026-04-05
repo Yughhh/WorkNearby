@@ -1,0 +1,7 @@
+import api from './api';
+
+export const fetchGrowthStats = async () => {
+  const res = await api.get('/admin/stats');
+  return res.data;
+};
+
