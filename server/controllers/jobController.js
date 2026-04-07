@@ -77,6 +77,8 @@ exports.getNearbyJobs = async (req, res) => {
             job.location.coordinates[1] + offset()
           ]
         }
+      };
+    });
 
     res.json(jobsWithDistance);
   } catch (err) {
