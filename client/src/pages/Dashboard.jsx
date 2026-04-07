@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { getCurrentUser } from '../services/authService';
-import { fetchMyJobs, fetchApplicants, updateApplicationStatus } from '../services/marketplaceService';
+import { fetchMyJobs, fetchJobApplications, updateApplicationStatus } from '../services/marketplaceService';
 import { startConversation } from '../services/messageService';
 import { markJobCompleted } from '../services/reviewService';
 import ReviewModal from '../components/ReviewModal';
@@ -52,7 +52,7 @@ const Dashboard = () => {
     setSelectedJob(job);
     setAppLoading(true);
     try {
-      const data = await fetchApplicants(job._id);
+      const data = await fetchJobApplications(job._id);
       setApplicants(data);
     } catch (err) {
       toast.error('Failed to load applicants.');
