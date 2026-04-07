@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { getCurrentUser } from '../services/authService';
-import { fetchMyJobs, fetchJobApplications, updateApplicationStatus } from '../services/marketplaceService';
+import { fetchClientJobs, fetchJobApplications, updateApplicationStatus } from '../services/marketplaceService';
 import { startConversation } from '../services/messageService';
 import { markJobCompleted } from '../services/reviewService';
 import ReviewModal from '../components/ReviewModal';
@@ -36,7 +36,7 @@ const Dashboard = () => {
   const loadMyJobs = async () => {
     setLoading(true);
     try {
-      const data = await fetchMyJobs();
+      const data = await fetchClientJobs();
       setJobs(data);
       if (data.length > 0) {
         handleViewApplicants(data[0]);
